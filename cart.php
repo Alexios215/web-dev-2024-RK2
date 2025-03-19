@@ -31,7 +31,7 @@ $cart_items = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <header>
         <nav>
             <a href="index.php">Главная</a>
-            <a href="shop.php">Магазин</a>
+            <a href="shop.php">Каталог</a>
             <a href="cart.php">Корзина</a>
             <a href="logout.php">Выйти</a>
         </nav>

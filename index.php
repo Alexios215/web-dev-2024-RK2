@@ -16,7 +16,7 @@ include 'db.php';
     <header>
         <nav>
             <a href="index.php">Главная</a>
-            <a href="shop.php">Магазин</a>
+            <a href="shop.php">Каталог</a>
             <?php if (isset($_SESSION['username'])): ?>
                 <a href="cart.php">Корзина</a>
                 <a href="logout.php">Выйти</a>
