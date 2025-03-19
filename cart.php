@@ -8,10 +8,8 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 $user_id = $_SESSION['user_id'];
-
-// Получаем товары в корзине пользователя
 $stmt = $conn->prepare("
-    SELECT products.id, products.name, products.price, products.image, cart.quantity 
+    SELECT products.id, products.name, products.description, products.price, products.image, cart.quantity 
     FROM cart 
     JOIN products ON cart.product_id = products.id 
     WHERE cart.user_id = :user_id
@@ -43,25 +41,31 @@ $cart_items = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <?php if (empty($cart_items)): ?>
             <p>Ваша корзина пуста.</p>
         <?php else: ?>
-            <table>
+            <table class="cart-table">
                 <thead>
                     <tr>
-                        <th>Товар</th>
+                        <th>Фото</th>
+                        <th>Название</th>
+                        <th>Описание</th>
                         <th>Цена</th>
                         <th>Количество</th>
-                        <th>Итого</th>
+                        <th>Действия</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php foreach ($cart_items as $item): ?>
                         <tr>
-                            <td>
-                                <img src="<?= $item['image'] ?>" alt="<?= $item['name'] ?>" width="50">
-                                <?= $item['name'] ?>
-                            </td>
+                            <td><img src="<?= $item['image'] ?>" alt="<?= $item['name'] ?>"></td>
+                            <td><?= $item['name'] ?></td>
+                            <td><?= $item['description'] ?></td>
                             <td><?= $item['price'] ?> руб.</td>
                             <td><?= $item['quantity'] ?></td>
-                            <td><?= $item['price'] * $item['quantity'] ?> руб.</td>
+                            <td>
+                                <form action="remove_from_cart.php" method="POST" style="display: inline;">
+                                    <input type="hidden" name="product_id" value="<?= $item['id'] ?>">
+                                    <button type="submit">Удалить</button>
+                                </form>
+                            </td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
@@ -69,7 +73,7 @@ $cart_items = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <?php endif; ?>
     </main>
     <footer>
-        <p>&copy; 2023 Магазин. Все права защищены.</p>
+        <p>&copy; 2025 Магазин. Все права защищены.</p>
     </footer>
 </body>
 

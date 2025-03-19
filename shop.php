@@ -31,17 +31,36 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </header>
     <main>
         <h1>Наши товары</h1>
-        <div class="products">
-            <?php foreach ($products as $product): ?>
-                <div class="product">
-                    <img src="<?= $product['image'] ?>" alt="<?= $product['name'] ?>">
-                    <h2><?= $product['name'] ?></h2>
-                    <p><?= $product['description'] ?></p>
-                    <p>Цена: <?= $product['price'] ?> руб.</p>
-                    <a href="product.php?id=<?= $product['id'] ?>">Подробнее</a>
-                </div>
-            <?php endforeach; ?>
-        </div>
+        <table class="products-table">
+            <thead>
+                <tr>
+                    <th>Фото</th>
+                    <th>Название</th>
+                    <th>Описание</th>
+                    <th>Цена</th>
+                    <th>Действия</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($products as $product): ?>
+                    <tr>
+                        <td><img src="<?= $product['image'] ?>" alt="<?= $product['name'] ?>"></td>
+                        <td><?= $product['name'] ?></td>
+                        <td><?= $product['description'] ?></td>
+                        <td><?= $product['price'] ?> руб.</td>
+                        <td>
+                            <a href="product.php?id=<?= $product['id'] ?>">Подробнее</a>
+                            <?php if (isset($_SESSION['username'])): ?>
+                                <form action="add_to_cart.php" method="POST" style="display: inline;">
+                                    <input type="hidden" name="product_id" value="<?= $product['id'] ?>">
+                                    <button type="submit">В корзину</button>
+                                </form>
+                            <?php endif; ?>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
     </main>
     <footer>
         <p>&copy; 2025 Магазин. Все права защищены.</p>

@@ -52,7 +52,7 @@ if (!$product) {
         <?php endif; ?>
     </main>
     <footer>
-        <p>&copy; 2023 Магазин. Все права защищены.</p>
+        <p>&copy; 2025 Магазин. Все права защищены.</p>
     </footer>
 </body>
 
