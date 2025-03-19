@@ -32,13 +32,8 @@ if (!$product) {
         <nav>
             <a href="index.php">Главная</a>
             <a href="shop.php">Магазин</a>
-            <?php if (isset($_SESSION['username'])): ?>
-                <a href="cart.php">Корзина</a>
-                <a href="logout.php">Выйти</a>
-            <?php else: ?>
-                <a href="login.php">Войти</a>
-                <a href="register.php">Регистрация</a>
-            <?php endif; ?>
+            <a href="cart.php">Корзина</a>
+            <a href="logout.php">Выйти</a>
         </nav>
     </header>
     <main>
@@ -47,15 +42,17 @@ if (!$product) {
         <p><?= $product['description'] ?></p>
         <p>Цена: <?= $product['price'] ?> руб.</p>
         <p>Количество: <?= $product['quantity'] ?></p>
-        <?php if (isset($_SESSION['username'])): ?>
+        <?php if (isset($_SESSION['user_id'])): ?>
             <form action="add_to_cart.php" method="POST">
                 <input type="hidden" name="product_id" value="<?= $product['id'] ?>">
                 <button type="submit">Добавить в корзину</button>
             </form>
+        <?php else: ?>
+            <p>Чтобы добавить товар в корзину, <a href="login.php">войдите</a> в систему.</p>
         <?php endif; ?>
     </main>
     <footer>
-        <p>&copy; 2025 Магазин. Все права защищены.</p>
+        <p>&copy; 2023 Магазин. Все права защищены.</p>
     </footer>
 </body>
 
