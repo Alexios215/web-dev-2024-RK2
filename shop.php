@@ -11,7 +11,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Магазин</title>
+    <title>Каталог</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -19,7 +19,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <header>
         <nav>
             <a href="index.php">Главная</a>
-            <a href="shop.php">Магазин</a>
+            <a href="shop.php">Каталог</a>
             <?php if (isset($_SESSION['username'])): ?>
                 <a href="cart.php">Корзина</a>
                 <a href="logout.php">Выйти</a>
@@ -30,7 +30,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </nav>
     </header>
     <main>
-        <h1>Наши товары</h1>
+        <h1>Каталог товаров</h1>
         <table class="products-table">
             <thead>
                 <tr>

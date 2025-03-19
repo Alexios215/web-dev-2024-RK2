@@ -31,9 +31,14 @@ if (!$product) {
     <header>
         <nav>
             <a href="index.php">Главная</a>
-            <a href="shop.php">Магазин</a>
-            <a href="cart.php">Корзина</a>
-            <a href="logout.php">Выйти</a>
+            <a href="shop.php">Каталог</a>
+            <?php if (isset($_SESSION['username'])): ?>
+                <a href="cart.php">Корзина</a>
+                <a href="logout.php">Выйти</a>
+            <?php else: ?>
+                <a href="login.php">Войти</a>
+                <a href="register.php">Регистрация</a>
+            <?php endif; ?>
         </nav>
     </header>
     <main>
@@ -50,6 +55,7 @@ if (!$product) {
         <?php else: ?>
             <p>Чтобы добавить товар в корзину, <a href="login.php">войдите</a> в систему.</p>
         <?php endif; ?>
+        <button onclick="window.history.back();">Назад</button>
     </main>
     <footer>
         <p>&copy; 2025 Магазин. Все права защищены.</p>
