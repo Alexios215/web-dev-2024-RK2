@@ -162,3 +162,77 @@ footer p {
     margin: 0;
     font-size: 0.9rem;
 }
+
+#slideshow {
+    overflow: hidden;
+    height: 300px;
+    width: 250px;
+    margin: 0 auto;
+}
+
+.slide {
+    float: left;
+    height: 300px;
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.slide img {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+}
+
+.slide p {
+    margin: 0;
+    padding: 10px 0;
+    text-align: center;
+    font-size: 16px;
+    color: #000;
+}
+
+.slide-wrapper {
+    width: calc(250px * 5);
+    animation: slide 20s ease infinite;
+}
+
+@keyframes slide {
+    10% {
+        margin-left: 0px;
+    }
+
+    20% {
+        margin-left: calc(-250px * 1);
+    }
+
+    30% {
+        margin-left: calc(-250px * 2);
+    }
+
+    40% {
+        margin-left: calc(-250px * 3);
+    }
+
+    50% {
+        margin-left: calc(-250px * 4);
+    }
+
+    60% {
+        margin-left: calc(-250px * 3);
+    }
+
+    70% {
+        margin-left: calc(-250px * 2);
+    }
+
+    80% {
+        margin-left: calc(-250px * 1);
+    }
+
+    90% {
+        margin-left: 0px;
+    }
+}
